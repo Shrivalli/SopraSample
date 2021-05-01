@@ -9,7 +9,7 @@ MVC Core
 Web API Core
 Blazor(intro)
 Devops- git, docker, kubernetes (concepts)
-
+New Line Added
 
 .NET - Framework 
 
