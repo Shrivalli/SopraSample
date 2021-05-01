@@ -1,0 +1,32 @@
+ Product p = new Product();
+            
+            Type mtype = p.GetType();
+
+            var p1 = (Product)Activator.CreateInstance(mtype);
+          
+            Console.WriteLine("Methods Information");
+            MethodInfo[] methods = mtype.GetMethods();
+           
+            var parameterTypes = new Type[] { typeof(string), typeof(int) };
+            var myMethodwithParams = mtype.GetMethod("sample", parameterTypes);
+            // Invoke
+            object[] parameters = new object[] { "Ram", 5 };
+            myMethodwithParams.Invoke(p1, parameters);
+            #region
+            //foreach (MethodInfo info in methods)
+            //{
+            //    Console.WriteLine(info.Name);
+            //    if(info.Name=="Display")
+            //    {
+            //        info.Invoke(p1, null);
+            //    }
+            //}
+
+            //Console.WriteLine("List of Properties");
+            //PropertyInfo[] prop = mtype.GetProperties();
+            //foreach(PropertyInfo i in prop)
+            //{
+            //    Console.WriteLine(i.Name);
+            //}
+            #endregion
+

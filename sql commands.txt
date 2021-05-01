@@ -1,0 +1,58 @@
+Primary key is a column in a table which cannot be null and which should be unique
+Foreign key is a primary key column in one table and acts as a reference in another 
+table to ensure that the values entered in the column is valid.
+
+DDL (Data Definition Language)
+1. Create
+2. Alter (adding columns, primary key, not null)
+3. Drop
+
+DML (Data Manipulation Language) - one/more records are affected
+1. Insert
+2. Update
+3. Delete 
+
+DRL (Data Retrieval Language)
+1. Select 
+
+
+Aggregate Functions
+1. min
+2. Max
+3. sum
+4. Count()
+5. Avg
+
+
+Joins:(retrieve columns from many tables)
+1. 
+
+
+create database orgsopra
+use orgsopra
+
+create table Employee
+(
+eid int primary key,
+ename varchar(20),
+salary float,
+doj datetime
+)
+
+create table Department
+(
+did int primary key,
+dname varchar(20)
+)
+
+insert into Department values(101,'Admin')
+select * from Department
+alter table employee alter column eid int not null
+alter table employee add primary key(eid)
+
+select  * from employee
+
+insert into employee values(1,'Priya',23000,'3/4/2020')
+insert into employee values(2,'Kiran',54500,'6/9/2021'),(3,'Ram',78000,'1/2/2020')
+
+delete from employee where eid=1

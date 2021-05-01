@@ -1,0 +1,322 @@
+Topics:
+C#
+SQL
+ADO.NET
+LINQ
+Entity Framework Core
+ASP.NET core (HTML, CSS, Javascript)
+MVC Core
+Web API Core
+Blazor(intro)
+Devops- git, docker, kubernetes (concepts)
+
+
+.NET - Framework 
+
+1. Many Languages - C#.NET, VB.NET, J#.NET, F#.NET(Base)
+2. Base Class Libraries - header files/packages
+3. CLR - Common Language Runtime
+
+Architecture of .NET F/W:
+Source code --> Compiled --> Executable code
+
+C# source code --> C# compiler --> MSIL/CIL  (Microsoft Intermediate Language)/
+(Common Intermediate Language)
+
+Vb.NET source code --> VB compiler --> MSIL/CIL
+
+MSIL--> CLR(Just In Time Compiler)--> Native code(OS)
+
+CLR
+1. CTS - Common Type System (common base class)
+2. CLS - Common Language Specification 
+3. Garbage Collection - Memory Management(GC Algorithm)
+
+Types of Applications that can be created using .NET:
+1. Desktop Applications: (Console(without GUI)/ Windows (with GUI))
+2. Web Applications 
+3. Mobile Application (Xamarin)
+
+IDE - Integrated Development Environment
+Visual Studio 2019 community Edition 
+2002,2003,2005,2008, 2010,2012,2013,2015,2017,2019
+
+2019--> F/w and languages
+
+.NET framework and .NET core
+.NET f/w(4.6) - windows
+.NET core (3.2) - linux / windows / Mac
+
+A solution can have many projects
+One project can have many classes
+
+Namespace is a collection of classes.
+A class can have many methods and properties.
+Background Compilation is happening in .NET IDE.
+Build phase checks for compilation errors and integrates all dependcy files 
+Execution phase displays the output by invoking the Main method of the class.
+
+Primitive Datatypes: int, float, string, boolean, DateTime, double, object
+Complex DataTypes: User Defined Dataypes --> class, struct, interface, Delegate
+
+DataTypes --> 
+1. Value Type  --> int, float, boolean, DateTime, enum, single, struct
+2. Reference Type --> string, object, class, interface, Delegates
+
+Type Conversions:
+1. Implicit Type Conversion -> int -> float , string to object
+2. Explicit Type Conversion -> float -> int
+3. Boxing - Converting a value type to reference type  (int to string)
+4. UnBoxing - Converting a reference type to a value type (string to int/float/double)
+
+OOPS
+1. Class - Generalization
+2. Object - Specialization
+3. Data Encapsulation - mem variables, mem functions together in an entity 
+4. Data Abstraction - Hiding unnecessary details and projecting relevant data to the client
+5. Inheritance - Deriving new classes from existing classes for reusability
+6. Polymorphism - Exisistence of a method in different forms
+
+Access Specifiers in .NET  - scope of a variable
+1. Private - accessible only with in the class
+2. protected
+3. internal - accessible within the same namsepace
+4. protected internal
+5. public - accessible outside the class
+
+Default access specifier of a class - internal
+Default access specifier of member variables - private
+
+output of a project can be dll or exe
+dll - reusable component. Does not have a memory of its own
+exe - Exes have their own memory and host OS can access and execute these projects
+
+Properties:
+1. To access the private variables outside the class, we need properties
+2. Properties should be public and of the same datatype of the variables.
+3. Get and Set are the methods defined in the properties
+4. Get is called Accessor method and Set is called Mutator method.
+5. The property which has only "get" method is called Read only property.
+6. The property which has only "set" method is called Write only property.
+
+Constructor is a special method which is used to initialize the member variables.
+It has the same name as the class name
+It is automatically invoked when we instantiate the class
+They can be overloaded.(by passing different arguments).
+Default constructor is automaticalled created by .NET framework/core.
+
+Assemblies are single deployable unit of code which makes the code available in other 
+machines.
+It contains metadata information for the CLR to understand. SDK is required in the
+target machine to execute the project.
+
+GAC- Global Assembly Cache
+1. Sign the project --> project properties --> signing --> choose a strong name
+2. build the application after signing
+3. open VS tools --> Developer Command prompt as Administrator
+4. gacutil -i "G:\Sopra Steria\Batch II\SecondConsoleApp\bin\Debug\netcoreapp3.1\SecondConsoleApp.dll"
+5. Our Assembly will be available in 
+C:\Windows\Microsoft.NET\assembly\GAC_MSIL
+
+Day2:
+1. ref, out
+2. Arrays
+3. Two D arrays
+4. Jagged Arrays
+5. Optional Parameters
+6. Params
+7. Pass by reference
+8. Enum
+9. Inheritance
+
+Virtual methods are those methods which can have definitions in the base class
+and can be overrided by the derived classes. 
+
+abstract methods do not have definition. 
+If a class contains even one abstract method, the class has to be abstract.
+Abstract classes can contain both abstract and non abstract method.
+Abstract classes cannot be instantiated (cannot create an instance)
+They have to be inherited and the abstract methods have to be defined/implemented.
+
+Base class methods can be redefined in the derived class using "override" keyword.
+Reference variable of base=memory of derived
+Shape s= new Triangle()
+1. If derived class has overrided method --> derived class method is called
+2. If derived class has new method --> base class method is called
+
+
+Interface:
+1. is collection of abstract methods.
+2. All methods of interface are public by default
+
+If A class implements an interface, it has to define all the methods of the interface.
+
+Exception Handling:
+
+Exception is a Runtime Error
+
+Types of Error:
+1. Syntax Error
+2. Logic Error
+3. Runtime Error - Handled
+
+To handle the exceptions, 
+
+1.try block - where the set of statements which might cause an exception is written
+2.catch - handler. It handles the exception
+3.finally - which will be invoked irrespective of whether the exception is occurred or not
+
+Exception class is the base class for all kinds of Exceptions.
+
+SystemException - built in Exceptions
+ApplicationException - user defined Exception
+
+One try block can have multiple catch blocks
+Exception should be the last catch block.
+try can have either catch or finally to avoid compilation error.
+But the exceptions are not handled till the catch block is used.
+
+File Handling
+
+1. FileStream
+2. StreamReader/Writer
+3. BinarReader/Writer
+4. Json data - serialize / Deserialize
+
+Delegates:
+1. Function pointer
+Layer of abstraction
+
+single cast delegate --> one delegate obj refering to one method.
+multi cast delegate --> one delegate obj refering to multiple methods one by one.
+
+add, mul -7,12
+write, write to file --> chaining of methods
+
+Types of Classes:
+1. Abstract - 
+can contain both abstract and non abstract method.
+Have to be inherited and cannot be instantiated.
+2. Static
+Static classes can contain only static methods and static variables.
+class variables are accessible to all the instances of the class.
+These classes cannot be instantiated and neither can be inherited.
+3. Sealed
+Cannnot be inherited. cannot override the methods of the sealed classes. 
+Has to be instantiated
+4. Partial 
+The definitions of the classes can be written in multiple places. When the client
+access the class, all the methods will be available to the end user.
+
+Extension Methods:
+Methods which can get associated with any objects.
+Create the method as static and pass 'this' keyword to get it associated with the 
+datatype to which the extension methdods can be invoked.
+
+Types of Methods:(Access Modifiers)
+1. Partial
+2. Abstract
+3. Virtual
+4. Sealed
+5. Static 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

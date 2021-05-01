@@ -1,0 +1,252 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
+namespace ExceptionHandling
+{
+    class delegateeg
+    {
+        public delegate void sampledel(int a, int b);
+        public delegate void sdel(string a);
+        public static void add(int x,int y)
+        {
+            Console.WriteLine(x + y);
+        }
+        public static void mul(int x, int y)
+        {
+            Console.WriteLine(x * y);
+        }
+
+        public static void print(string name)
+        {
+            Console.WriteLine("Welcome " + name);
+        }
+        public static void WriteToFile(string name)
+        {
+            FileStream fs = new FileStream("del.txt", FileMode.Append, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("welcome "+name);
+            sw.Close();
+        }
+
+        public static void Main()
+        {
+            sampledel d1 = new sampledel(add);
+            sampledel d2 = new sampledel(mul);
+            sampledel d3;
+            d3 = d1 + d2;
+            sdel d4 = new sdel(print);
+            sdel d5 =new sdel(WriteToFile);
+            sdel d6;
+            
+            //int res=d1(4, 5);
+            // int prod = d2(5, 6);
+            Console.WriteLine("Enter 2 numbers");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int b = Convert.ToInt32(Console.ReadLine());
+            d3(a, b);
+            d1(a, b);
+            d6 = d4 + d5;
+            d6("Vandhana");
+            //int res = add(4, 5);
+            //Console.WriteLine(res);
+          //  Console.WriteLine("Prod: " + prod);
+
+        }
+    }
+}
+
+FileDemo4.cs
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+
+namespace ExceptionHandling
+{
+    class FileDemo4
+    {
+        //public static void Main()
+        //{
+        //    FileStream fs = new FileStream("data.bin",FileMode.Append,FileAccess.Write);
+        //    BinaryWriter bw = new BinaryWriter(fs);
+        //    bw.Write("welcome");
+        //    bw.Close();
+        //    Console.WriteLine("Data written to file");
+
+        //    FileStream fs1 = new FileStream("data.bin", FileMode.Open, FileAccess.Read);
+        //    BinaryReader br = new BinaryReader(fs1);
+        //    var data = br.Read();
+        //    Console.WriteLine(data);
+        //}
+    }
+}
+
+FileDemo3.cs
+//using Newtonsoft.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+namespace ExceptionHandling
+{
+    class FileDemo3
+    {
+        public static List<string> InvalidJsonElements;
+        //public static IList<T> DeserializeToList<T>(string jsonString)
+        //{
+        //    InvalidJsonElements = null;
+        //    var array = JArray.Parse(jsonString);
+        //    IList<T> objectsList = new List<T>();
+
+        //    foreach (var item in array)
+        //    {
+        //        try
+        //        {
+        //            // CorrectElements  
+        //            objectsList.Add(item.ToObject<T>());
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            InvalidJsonElements = InvalidJsonElements ?? new List<string>();
+        //            InvalidJsonElements.Add(item.ToString());
+        //        }
+        //    }
+
+        //    return objectsList;
+        //}
+        //public static void Main()
+        //{
+        //    //deserialize JSON from file  
+        //    using (StreamReader r = new StreamReader("book.txt"))
+        //    {
+        //        string json = r.ReadToEnd();
+        //        var item = JsonConvert.DeserializeObject<Book>(json);
+        //        Console.WriteLine(item.BookID + " " + item.BookName);
+
+        //       // string json = r.ReadToEnd();
+        //        // var item = JsonConvert.DeserializeObject<List<Book>>(json);
+        //       // var Books = DeserializeToList<Book>(json);
+        //        //foreach(var item in Books)
+        //        //{
+        //         //   Console.WriteLine(item.BookID + " " + item.BookName);
+        //        //}
+        //    }
+            
+            
+        //}
+    }
+}
+
+FileDemo2.cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+//using System.Text.Json;
+using Newtonsoft.Json;
+
+namespace ExceptionHandling
+{
+    class Book
+    {
+        public int BookID { get; set; }
+        public string BookName { get; set; }
+    }
+    class FileDemo2
+    {
+    //    public static void Main()
+    //    {
+    //        Book b1 = new Book();
+    //        Console.WriteLine("Enter Book Id and Book Name");
+    //        b1.BookID = Convert.ToInt32(Console.ReadLine());
+    //        b1.BookName = Console.ReadLine();
+            
+    //        JsonSerializer serializer = new JsonSerializer();
+    //        serializer.NullValueHandling = NullValueHandling.Ignore;
+    //        using (StreamWriter sw = new StreamWriter("book.txt",true))
+    //        using (JsonWriter writer = new JsonTextWriter(sw))
+    //        {
+    //            serializer.Serialize(writer, b1);
+    //        }
+    //        Console.WriteLine("Book Object Written into the file");
+    //    }
+    }
+}
+
+FileDemo1.cs
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+
+namespace ExceptionHandling
+{
+    class Filedemo1
+    {
+        //public static void Main()
+        //{
+        //    try
+        //    {
+        //        FileStream fs = new FileStream("msg.txt", FileMode.Append, FileAccess.Write);
+        //        StreamWriter sw = new StreamWriter(fs);
+        //        Console.WriteLine("Enter your name:");
+        //        string name = Console.ReadLine();
+        //        sw.WriteLine("Welcome to my page "+name);
+        //        sw.Close();
+        //        Console.WriteLine("Successfully wrote into the file");
+        //    }
+        //    catch(Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //}
+    }
+}
+
+ExceptionHandling.cs
+using System;
+
+namespace ExceptionHandling
+{
+    class Program
+    {
+        //static void Main(string[] args)
+        //{
+        //    int a,b,res=0;
+        //    Console.WriteLine("Enter 2 numbers");
+        //    try
+        //    {
+        //        a = Convert.ToInt32(Console.ReadLine());
+        //        b = Convert.ToInt32(Console.ReadLine());
+        //        res = a / b;
+        //        int[] s = new int[4] { 7, 8, 9, 4 };
+        //        Console.WriteLine(s[6]);
+        //    }
+        //    //catch (FormatException)
+        //    //{
+        //    //    Console.WriteLine("Please enter only numbers");
+        //    //}
+        //    //catch(DivideByZeroException)
+        //    //{
+        //    //    Console.WriteLine("Second number cannot be zero");
+        //    //}
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //    finally
+        //    {
+        //        Console.WriteLine(res);
+        //    }
+
+
+        //}
+    }
+}
+

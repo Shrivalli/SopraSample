@@ -1,0 +1,164 @@
+--stored procedures
+--1. Data Abstraction
+--2. Reusability
+--3. Faster (its compiled once and executed whenever called)
+
+create procedure spselectemp 
+as
+select * from employee
+
+execute spselectemp
+
+alter proc spinsertemp(@empid int,@empname varchar(20),@sal float,@doj datetime,@did int)
+as
+insert into employee values(@empid,@empname,@sal,@doj,@did)
+
+exec spinsertemp 7,'Vishal',96000,cast('2020/04/05' as datetime),103
+
+create proc spupdateemp(@empid int,@empname varchar(40),@sal float)
+as
+update employee set ename=@empname, salary=@sal where eid=@empid
+
+update employee set eid=10 where salary=80000
+
+exec spupdateemp 2,'KiranKumar',80000
+exec spselectemp
+
+
+sp_helptext spselectemp
+
+create procedure spselectemp 
+
+as
+
+select * from employee
+
+--Function
+--set of statements given a name
+--calculations 
+-- should return value
+
+CREATE FUNCTION NoParameters()
+  RETURNS INT
+  AS
+    BEGIN 
+       RETURN (SELECT SUM(salary) FROM employee)
+    END
+
+	select dbo.NoParameters() as totalsal from employee
+
+	create FUNCTION fullName (@firstName VARCHAR(50), @lastName VARCHAR(50))
+  RETURNS VARCHAR(200)
+  AS
+    BEGIN 
+       RETURN (SELECT  @firstName + SPACE(2) + @lastName)
+    END
+
+	select dbo.fullName('Ram','Kumar')
+
+	--Table Valued Function
+	--return value is more than (a record)
+
+	create function empbydid(@did int)
+	returns table
+	as
+	return
+	(select * from employee where deptid=@did)
+
+	select * from dbo.empbydid(102)
+	
+	--MultiValued TVF
+	create function empdept()
+	returns @emp table
+	(
+	eid int,
+	empname varchar(20),
+	sal float,
+	dname varchar(20)
+	)
+	as
+	begin
+	insert into @emp
+	select e.eid,e.ename,e.salary,d.dname from employee e join department d on e.deptid=d.did
+	return
+	end
+
+	select * from dbo.empdept()
+	
+
+--Cursors
+--1. Declare the variables
+--2. Define the cursor
+--3. Open the cursor
+--4. fetch the values from cursor into the variables
+--5. loop them using While @@fetchstatus
+--6. increment to the next record(again fetch values)
+--7. close the cursor
+--8. Deallocate the cursor
+
+select * from employee
+
+declare @ename varchar(20)
+declare @sal float
+declare c1 cursor 
+for
+select ename,salary from Employee
+open c1
+fetch next from c1 into @ename,@sal
+while @@FETCH_STATUS=0
+begin
+print @ename+ ' earns '+cast(@sal as varchar(20))
+fetch next from c1 into @ename, @sal
+end
+close c1
+deallocate c1
+
+
+/*
+Triggers - cannot be called explicitly
+based on another (DDL/DML) the trigger has to get executed
+two magic tables inserted/deleted
+*/
+
+create table exemp
+(
+eid int,
+ename varchar(20),
+sal float,
+doj datetime,
+deptid int
+)
+
+select * from empbackup
+
+insert into employee values(9,'Krish',53000,getdate(),104)
+
+alter trigger t1
+on employee
+for insert
+as
+insert into empbackup
+select i.eid,i.ename,i.salary,i.doj,i.deptid from inserted i
+print 'My trigger invoked'
+
+create trigger t2
+on employee
+for delete
+as 
+insert into exemp
+select d.eid,d.ename,d.salary,d.doj,d.deptid from deleted d
+print 'my own trigger'
+
+delete from employee where eid=5
+
+select * from employee
+
+select * from exemp
+
+
+
+
+
+
+	
+
