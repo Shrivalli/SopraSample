@@ -2,7 +2,7 @@
 --1. Data Abstraction
 --2. Reusability
 --3. Faster (its compiled once and executed whenever called)
-
+--Shrivalli Added a line
 create procedure spselectemp 
 as
 select * from employee
