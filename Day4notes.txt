@@ -1,5 +1,5 @@
  Product p = new Product();
-            
+            ----Lalit tyagi
             Type mtype = p.GetType();
 
             var p1 = (Product)Activator.CreateInstance(mtype);
